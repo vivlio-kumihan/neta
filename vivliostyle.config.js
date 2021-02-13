@@ -1,9 +1,10 @@
 module.exports = {
-  title: 'VFM_syntax', // populated into `manifest.json`, default to `title` of the first entry or `name` in `package.json`.
+  title: 'hello', // populated into `manifest.json`, default to `title` of the first entry or `name` in `package.json`.
   author: 'Nobuyuki Takahiro <takahiro@kumihan.com>', // default to `author` in `package.json` or undefined.
-  // language: 'ja', // default to `en`.
-  // size: 'A4', // paper size.
-  theme: '@vivliostyle/theme-techbook', // .css or local dir or npm package. default to undefined.
+  language: 'ja', // default to `en`.
+  size: 'A4', // paper size.
+  theme: 'my-theme/theme.css',
+  // theme: 'my-theme', // .css or local dir or npm package. default to undefined.
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   entry: [
     'manuscript.md', // `title` is automatically guessed from the file (frontmatter > first heading).

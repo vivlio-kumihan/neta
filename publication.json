@@ -1,0 +1,20 @@
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/pub-context"
+  ],
+  "type": "Book",
+  "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
+  "author": "Nobuyuki Takahiro <takahiro@kumihan.com>",
+  "inLanguage": "ja",
+  "dateModified": "2021-02-13T12:49:30.444Z",
+  "name": "hello",
+  "readingOrder": [
+    {
+      "url": "manuscript.html",
+      "title": "連載　はい6民です"
+    }
+  ],
+  "resources": [],
+  "links": []
+}
