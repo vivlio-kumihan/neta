@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'hello', // populated into `manifest.json`, default to `title` of the first entry or `name` in `package.json`.
+  title: 'How to Lean Vivliostyle', // populated into `manifest.json`, default to `title` of the first entry or `name` in `package.json`.
   author: 'Nobuyuki Takahiro <takahiro@kumihan.com>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to `en`.
   size: 'A4', // paper size.

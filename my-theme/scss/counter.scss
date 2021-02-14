@@ -70,12 +70,11 @@ figure.tbl {
   counter-increment: footnote;
   &::footnote-call,
   &::footnote-marker {
-    // content: '[' counter(footnote) ']';
-    content: '※' counter(footnote);
+    content: '[' counter(footnote) ']';
+    // content: '※' counter(footnote);
   }
 
   &::footnote-call {
-    color: red;
     font-size: 80%;
     margin: 0 .3rem;
   }
