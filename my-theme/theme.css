@@ -256,6 +256,8 @@ blockquote :not(pre) > code {
 
 body {
   counter-reset: section subsection fig tbl footnote cite;
+  columns: 2 25em;
+  column-gap: 2em;
 }
 
 a[data-ref=sec],

@@ -1,5 +1,10 @@
 body {
   counter-reset: section subsection fig tbl footnote cite;
+  columns: 2 25em;
+  column-gap: 2em;
+  // column-rule: thin dashed darkturquoise; 
+  // thin | medium | thick
+  // none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset
 }
 
 a[data-ref="sec"],

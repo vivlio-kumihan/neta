@@ -7,7 +7,9 @@ module.exports = {
   // theme: 'my-theme', // .css or local dir or npm package. default to undefined.
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   entry: [
-    'manuscript.md', // `title` is automatically guessed from the file (frontmatter > first heading).
+    // 'manuscript.md',
+    'css_syntax_columns.md',
+    // `title` is automatically guessed from the file (frontmatter > first heading).
     // {
     //   path: 'epigraph.md',
     //   title: 'Epigraph', // title can be overwritten (entry > file),

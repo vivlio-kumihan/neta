@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>CSS Multi-column Layout Module Level 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="my-theme/theme.css">
+</head>
+<body>
+<section id="css-multi-column-layout-module-level-1"><h1>CSS Multi-column Layout Module Level 1</h1><section id="w3c-working-draft-12-february-2021"><h4>W3C Working Draft, 12 February 2021</h4></section><section id="抄録"><h2>抄録</h2><p>本仕様書は、Web 用スタイルシート言語である CSS における複数カラムレイアウトについて規定する。本仕様で規定されている機能を利用して、コンテンツを複数の列の間に隙間やルールを設けて流すことができる。</p><p>CSSは、構造化された文書（HTMLやXMLなど）の画面や紙面などでの描画を記述するための言語である。</p></section><section id="この文書のステータス"><h2>この文書のステータス</h2><p>このセクションでは、この文書の発行時の状態を説明します。他の文書がこの文書に取って代わることがある。現在のW3C出版物及びこの技術報告書の最新改訂版のリストは、<a href="https://www.w3.org/TR/">https://www.w3.org/TR/</a> のW3C技術報告書インデックスに掲載されている。</p><p>この文書は、CSS作業部会が作業草案として発行したものである。ワーキングドラフトとして出版されたことは、W3C メンバーシップによる承認を意味するものではない。</p><p>この文書は草案であり、いつでも他の文書に更新されたり、置き換えられたり、廃止されたりする可能性がある。この文書を作業中以外のものとして引用することは不適切です。</p><p>以下のように、タイトルに仕様コード "css-multicol" を含めて GitHub に課題を提出することでフィードバックを送ってください (推奨)。"[css-multicol] ...コメントの要約...." のようにしてください。すべての問題とコメントはアーカイブされます。また、(アーカイブされた)公開メーリングリスト <a href="mailto:www-style@w3.org">www-style@w3.org</a> にフィードバックを送ることもできます。</p><p>この文書は、2020年9月15日のW3Cプロセス文書に準拠する。</p><p>この文書は、W3C特許ポリシーの下で運営されているグループによって作成された。W3Cは、グループの成果物に関連して行われた特許開示の公開リストを維持している。本質的クレームを含むと考えられる特許を実際に知っている個人は、W3C特許ポリシーの第6項に従って情報を開示しなければならない。</p></section><section id="1-序章"><h2>1. 序章</h2><p>(このセクションは規範ではありません)。</p><p>このモジュールでは、CSSにおける複数列レイアウトについて説明する。このドキュメントで説明する機能を使用することで、スタイルシートは、要素の内容を複数の列にレイアウトすることを宣言することができます。</p><p>CSS の他のレイアウト方法は、親要素に適用されると、直接の子要素の表示プロパティを変更する。例えば、3列のグリッド・レイアウトが作成された場合、グリッド・コンテナの直接の子要素はグリッド・アイテムとなり、必要に応じて追加の行が作成され、セルごとに 1つの要素がカラム・トラックに配置されます。</p><p>しかし、マルチカラムコンテナの子要素は通常のフローを継続し、そのフローは複数のカラムに配置されます。これらの列は柔軟なインラインサイズを持っているため、表示される列のサイズや数を変更することで利用可能なスペースに対応します。</p><p>複数カラムのレイアウトは、CSSで記述するのは簡単です。以下に簡単な例を示します。</p><ul>
+<li>
+<p>例1</p>
+<pre class="language-text"><code class="language-text">body { column-width: 12em }</code></pre>
+<blockquote>
+<p>正確なカラム数は利用可能なスペースに依存します。</p>
+</blockquote>
+</li>
+</ul><p>カラム数はスタイルシートで明示的に設定することもできます。</p><ul>
+<li>
+<p>例2</p>
+<pre class="language-text"><code class="language-text">body { column-count: 2 }</code></pre>
+<blockquote>
+<p>この場合、カラムの数は固定で、カラムの幅は利用可能な幅に応じて変化します。</p>
+</blockquote>
+</li>
+</ul><p>短縮型のcolumnsプロパティを使用して、1つの宣言でどちらか、または両方のプロパティを設定することができます。</p><ul>
+<li>
+<p>例3
+これらの例では、カラムの数、カラムの幅、および数と幅の両方がそれぞれ設定されています。</p>
+<pre class="language-text"><code class="language-text">body { columns: 2 }
+body { columns: 12em }
+body { columns: 2 12em }</code></pre>
+</li>
+</ul><p>このモジュールで導入されたもう一つのプロパティ群は、カラム間のギャップとルールを記述します。</p><ul>
+<li>
+<p>例4</p>
+<pre class="language-text"><code class="language-text">body {
+  column-gap: 1em;
+  column-rule: thin solid black;
+}</code></pre>
+<blockquote>
+<p>上の例の最初の宣言では、隣接する2つの列の間のギャップを1emに設定しています。列の隙間はパディング領域に似ています。隙間の中央には、column-ruleプロパティによって記述されるルールがあります。</p>
+</blockquote>
+</li>
+</ul><p>column-ruleプロパティの値は、CSSのborderプロパティの値と似ています。border と同様に、column-rule は短縮プロパティです。</p><ul>
+<li>
+<p>例5
+この例では、上記の例の短縮型のcolumn-rule宣言を展開しています。</p>
+<pre class="language-text"><code class="language-text">body {
+  column-gap: 1em;
+  column-rule-width: thin;
+  column-rule-style: solid;
+  column-rule-color: black;
+}</code></pre>
+</li>
+</ul><p>column-fillとcolumn-spanプロパティは、スタイルシートに複数列レイアウトの視覚的表現の幅を与えます。</p><ul>
+<li>
+<p>例6
+この例では、列はバランスがとれている、つまりほぼ同じ長さになるように設定されています。また、h2 要素はすべての列にまたがるように設定されています。</p>
+<pre class="language-text"><code class="language-text">div { column-fill: balance }
+h2 { column-span: all }</code></pre>
+</li>
+</ul><p>この仕様では、10個の新しいプロパティを導入していますが、そのすべてが上記の例で使用されています。</p><p>すべての列プロパティが初期値を持つ場合、要素のレイアウトは、1つの列だけを持つ複数列レイアウトと同じになります。</p><ul>
+<li>例7
+列の隙間（斜めのハッチング）と列の規則は、パディング（十字のハッチング）を持つ複数列コンテナのこのサンプルのレンダリングで示されています。ハッチングされた部分は、説明のためだけに存在しています。実際の実装では、これらの領域は背景によって決定されます。2 番目の画像は、列規則を持つ複数列コンテナのレンダリングを示しています。</li>
+</ul></section></section>
+</body>
+</html>

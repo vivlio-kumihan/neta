@@ -7,12 +7,16 @@
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
   "author": "Nobuyuki Takahiro <takahiro@kumihan.com>",
   "inLanguage": "ja",
-  "dateModified": "2021-02-14T02:25:19.929Z",
+  "dateModified": "2021-02-14T04:15:42.133Z",
   "name": "How to Lean Vivliostyle",
   "readingOrder": [
     {
       "url": "manuscript.html",
       "title": "連載　はい6民です"
+    },
+    {
+      "url": "css_syntax_columns.html",
+      "title": "CSS Multi-column Layout Module Level 1"
     }
   ],
   "resources": [],
