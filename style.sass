@@ -1,0 +1,58 @@
+@chrset "UTF-8"
+
+// font
+$noto: "Noto Sans JP", sans-serif
+$jost: "Jost", sans-serif
+
+// color
+$bg-color: #0f1111
+$black:#5A5A5A
+$black-middle:  #c7c7c7
+$black-light:  #dfdfdf
+$gray-light: #F0F0F0
+$orange-gray-light: #F8F8F8
+$orange: #F87700
+$blue: #3049c4
+
+:root 
+  font-size: 93.75% // => 15px
+  scroll-behavior: smooth
+  body
+    font-family: $noto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Hiragino Sans", "メイリオ", "Meiryo", sans-serif
+    line-height: 1  
+    main
+      width: min(100%, 700px)
+      margin: 50px auto
+      padding: 20px
+      background-color: #ddd
+      border-radius: 20px
+      section
+        padding: 20px
+        background-color: #fff
+        border-radius: 20px
+        + section
+          margin-top: 20px
+        h2
+          font-size: 1.2rem
+          font-weight: 900
+          text-align: center
+          text-transform: uppercase
+        > ul
+          display: flex
+          justify-content: center
+          margin-top: 15px
+          li:first-of-type::after
+            content: "／"
+            margin: 0 5px
+        > button
+          display: grid
+          place-content: center
+          width: 50%
+          height: 50px
+          margin: 20px auto 0
+          font-size: 1.1rem
+          border-radius: 10px
+          background-color: #eee
+          &.de-active
+            pointer-events: none
+            opacity: .5

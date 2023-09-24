@@ -1,0 +1,54 @@
+@charset "UTF-8";
+@chrset "UTF-8";
+:root {
+  font-size: 93.75%;
+  scroll-behavior: smooth;
+}
+:root body {
+  font-family: "Noto Sans JP", sans-serif, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Hiragino Sans", "メイリオ", "Meiryo", sans-serif;
+  line-height: 1;
+}
+:root body main {
+  width: min(100%, 700px);
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ddd;
+  border-radius: 20px;
+}
+:root body main section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+:root body main section + section {
+  margin-top: 20px;
+}
+:root body main section h2 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+:root body main section > ul {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+:root body main section > ul li:first-of-type::after {
+  content: "／";
+  margin: 0 5px;
+}
+:root body main section > button {
+  display: grid;
+  place-content: center;
+  width: 50%;
+  height: 50px;
+  margin: 20px auto 0;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background-color: #eee;
+}
+:root body main section > button.de-active {
+  pointer-events: none;
+  opacity: 0.5;
+}/*# sourceMappingURL=style.css.map */
