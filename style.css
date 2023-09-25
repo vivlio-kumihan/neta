@@ -49,6 +49,22 @@
   content: "／";
   margin: 0 5px;
 }
+:root body main section ul.logs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 250px;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 1.8;
+  border: 1px solid #eee;
+  box-shadow: 0 0 20px #eee inset;
+  overflow: auto;
+}
+:root body main section ul.logs li:first-of-type::after {
+  content: "";
+  margin: 0;
+}
 :root body main section > button {
   display: grid;
   place-content: center;

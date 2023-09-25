@@ -9,19 +9,44 @@ const toKebabCase = (name) => {
   return kebabCase;
 }
 
-const enemy = {
-  name: 'john',
-  hp: 50,
-  attack: 4,
-  deffence: 1
-};
+let logIndex = 0;
+const insertLog = (texts) => {
+  const logsElem = document.getElementById('logs'),
+        createlog = document.createElement('li');
+  logIndex++
+  createlog.innerHTML = logIndex + ': ' + texts
+  logsElem.insertBefore(createlog, logsElem.firstChild);
+}
+
+const enemies = [
+  {
+    name: 'slime',
+    hp: 50,
+    attack: 3,
+    defense: 1
+  },
+  {
+    name: 'fairy',
+    hp: 60,
+    attack: 4,
+    defense: 2
+  },
+  {
+    name: 'gargoyle',
+    hp: 100,
+    attack: 5,
+    defense: 2
+  },
+]
+
+const enemy = enemies[Math.floor(Math.random() * enemies.length)]
 enemy.maxHp = enemy.hp;
 
 const player = {
-  name: 'nob',
+  name: 'player',
   hp: 100,
   attack: 5,
-  deffence: 2
+  defense: 2
 };
 player.maxHp = player.hp;
 
@@ -31,11 +56,11 @@ const insertText = (id, text) => {
 
 const damegeRange = .3;
 
-const damegeCal = (attack, deffence) => {
+const damegeCal = (attack, defense) => {
   const maxDamege = attack * (1 + damegeRange),
         minDamege = attack * (1 - damegeRange),
         attackDamege = Math.floor(Math.random() * (maxDamege - minDamege) + minDamege);
-  const damege = attackDamege - deffence;
+  const damege = attackDamege - defense;
   return damege < 1 ? 0 : damege;
 };
 
@@ -48,31 +73,42 @@ insertText('current-player-hp', player.hp);
 insertText('max-player-hp', player.hp);
 
 document.getElementById('attack').addEventListener('click', function() {
-  let endGame = false;
-  const playerDamege = damegeCal(player.attack, enemy.deffence),
-        enemyDamege = damegeCal(enemy.attack, player.deffence);
+  let victory = false,
+      defeat = false;
 
+  const playerName = '<span style="color: blue">' + player.name + '</span>',
+        enemyName = '<span style="color: red">' + enemy.name + '</span>';
+  
+  const playerDamege = damegeCal(player.attack, enemy.defense);
+  const enemyDamege = damegeCal(enemy.attack, player.defense);
+  
   enemy.hp -= playerDamege;
   insertText('current-eneny-hp', enemy.hp);
-  player.hp -= enemyDamege;
-  insertText('current-player-hp', player.hp);
-  
   document.getElementById('current-enemy-hpgauge-value').style.width = `${enemy.hp / enemy.maxHp * 100}%`;
-  document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
+  insertLog(playerName + 'の攻撃 => ' + enemyName + 'に対して' + enemyDamege + 'のダメージ')
   
   if (enemy.hp <= 0) {
     alert('Win');
-    endGame = true;
-    enemy.hp = 0;
+    victory = true;
+    enemy.hp = 0; 
     insertText('current-eneny-hp', enemy.hp);
     document.getElementById('current-enemy-hpgauge-value').style.width = '0%';
-  } else if (player.hp <= 0) {
-    alert('Loose')
-    endGame = true;
-    player.hpp = 0;
-    insertText('current-eneny-hp', enemy.hp);
-    document.getElementById('current-player-hpgauge-value').style.width = '0%';
   }
 
-  if (endGame) this.classList.add('de-active')
+  if (!victory) {
+    player.hp -= enemyDamege;
+    insertText('current-player-hp', player.hp);
+    document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
+    insertLog(enemyName + 'の攻撃 => ' + playerName + 'に対して' + playerDamege + 'のダメージ')
+  
+    if (player.hp <= 0) {
+      alert('Loose')
+      defeat = true;
+      player.hpp = 0;
+      insertText('current-eneny-hp', enemy.hp);
+      document.getElementById('current-player-hpgauge-value').style.width = '0%';
+    }
+  }
+
+  if (victory || defeat) this.classList.add('de-active')
 });

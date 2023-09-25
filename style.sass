@@ -46,7 +46,6 @@ $blue: #3049c4
             background-color: blue
             border: unset
             transition: .3s
-
         > ul
           display: flex
           justify-content: center
@@ -54,6 +53,21 @@ $blue: #3049c4
           li:first-of-type::after
             content: "／"
             margin: 0 5px
+        ul.logs
+          display: flex
+          flex-direction: column
+          justify-content: flex-start
+          height: 250px
+          padding: 10px 15px
+          font-size: 16px
+          line-height: 1.8
+          border: 1px solid #eee
+          box-shadow: 0 0 20px #eee inset
+          overflow: auto
+          li:first-of-type::after
+            content: ""
+            margin: 0
+
         > button
           display: grid
           place-content: center
