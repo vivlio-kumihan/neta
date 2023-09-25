@@ -16,7 +16,10 @@ const insertLog = (texts) => {
   logIndex++
   createlog.innerHTML = logIndex + ': ' + texts
   logsElem.insertBefore(createlog, logsElem.firstChild);
-}
+};
+
+let nowKilledNumber = 0,
+    targetKillsNumber = 2;
 
 const enemies = [
   {
@@ -55,6 +58,7 @@ const insertText = (id, text) => {
 };
 
 const damegeRange = .3;
+const criticalHitRate = 1.5;
 
 const damegeCal = (attack, defense) => {
   const maxDamege = attack * (1 + damegeRange),
@@ -72,6 +76,9 @@ insertText('player-name', player.name);
 insertText('current-player-hp', player.hp);
 insertText('max-player-hp', player.hp);
 
+insertText('now-killed-number', nowKilledNumber);
+insertText('target-kills-number', targetKillsNumber);
+
 document.getElementById('attack').addEventListener('click', function() {
   let victory = false,
       defeat = false;
@@ -79,13 +86,18 @@ document.getElementById('attack').addEventListener('click', function() {
   const playerName = '<span style="color: blue">' + player.name + '</span>',
         enemyName = '<span style="color: red">' + enemy.name + '</span>';
   
-  const playerDamege = damegeCal(player.attack, enemy.defense);
-  const enemyDamege = damegeCal(enemy.attack, player.defense);
+  let playerDamege = damegeCal(player.attack, enemy.defense);
+  let enemyDamege = damegeCal(enemy.attack, player.defense);
   
+  if (Math.floor(Math.random() * criticalHitRate)) {
+    playerDamege *= 2;
+    insertLog(playerName + 'の攻撃、クリティカル・ヒット => ' + enemyName + 'に対して' + playerDamege + 'のダメージ')
+  } else {
+    insertLog(playerName + 'の攻撃 => ' + enemyName + 'に対して' + playerDamege + 'のダメージ')
+  }
   enemy.hp -= playerDamege;
   insertText('current-eneny-hp', enemy.hp);
   document.getElementById('current-enemy-hpgauge-value').style.width = `${enemy.hp / enemy.maxHp * 100}%`;
-  insertLog(playerName + 'の攻撃 => ' + enemyName + 'に対して' + enemyDamege + 'のダメージ')
   
   if (enemy.hp <= 0) {
     alert('Win');
@@ -96,10 +108,15 @@ document.getElementById('attack').addEventListener('click', function() {
   }
 
   if (!victory) {
+    if (Math.floor(Math.random() * criticalHitRate)) {
+      playerDamege *= 2;
+      insertLog(enemyName + 'の攻撃、クリティカル・ヒット => ' + playerName + 'に対して' + enemyDamege + 'のダメージ')
+    } else {
+      insertLog(enemyName + 'の攻撃 => ' + playerName + 'に対して' + enemyDamege + 'のダメージ')
+    }
     player.hp -= enemyDamege;
     insertText('current-player-hp', player.hp);
     document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
-    insertLog(enemyName + 'の攻撃 => ' + playerName + 'に対して' + playerDamege + 'のダメージ')
   
     if (player.hp <= 0) {
       alert('Loose')
@@ -111,4 +128,9 @@ document.getElementById('attack').addEventListener('click', function() {
   }
 
   if (victory || defeat) this.classList.add('de-active')
+
+  if (victory) {
+    nowKilledNumber++;
+    insertText('now-killed-number', nowKilledNumber);
+  }
 });

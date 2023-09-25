@@ -49,6 +49,14 @@
   content: "／";
   margin: 0 5px;
 }
+:root body main section .player-status .killedNumbers {
+  display: flex;
+  justify-content: flex-end;
+}
+:root body main section .player-status .killedNumbers div:last-of-type:before {
+  content: "／";
+  margin: 0 5px;
+}
 :root body main section ul.logs {
   display: flex;
   flex-direction: column;

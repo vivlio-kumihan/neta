@@ -53,6 +53,13 @@ $blue: #3049c4
           li:first-of-type::after
             content: "／"
             margin: 0 5px
+        .player-status
+          .killedNumbers
+            display: flex
+            justify-content: flex-end
+            div:last-of-type:before
+              content: '／'
+              margin: 0 5px
         ul.logs
           display: flex
           flex-direction: column
@@ -67,7 +74,6 @@ $blue: #3049c4
           li:first-of-type::after
             content: ""
             margin: 0
-
         > button
           display: grid
           place-content: center
