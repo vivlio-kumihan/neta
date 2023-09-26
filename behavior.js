@@ -18,19 +18,28 @@ const insertLog = (texts) => {
   logsElem.insertBefore(createlog, logsElem.firstChild);
 };
 
+const showModal = (texts, hiddenNextButton = false) => {
+  console.log(hiddenNextButton);
+  document.getElementById('mask').classList.add('active');
+  document.getElementById('modal-title').textContent = texts;
+  if (hiddenNextButton) {
+    document.getElementById('modal-next-btn').classList.add('hidden');
+  }
+};
+
 let nowKilledNumber = 0,
     targetKillsNumber = 2;
 
 const enemies = [
   {
     name: 'slime',
-    hp: 50,
+    hp: 20,
     attack: 3,
     defense: 1
   },
   {
     name: 'fairy',
-    hp: 60,
+    hp: 30,
     attack: 4,
     defense: 2
   },
@@ -42,8 +51,8 @@ const enemies = [
   },
 ]
 
-const enemy = enemies[Math.floor(Math.random() * enemies.length)]
-enemy.maxHp = enemy.hp;
+let enemy = enemies[Math.floor(Math.random() * enemies.length)]
+enemies.forEach(elem => { elem.maxHp = elem.hp });
 
 const player = {
   name: 'player',
@@ -97,14 +106,17 @@ document.getElementById('attack').addEventListener('click', function() {
   }
   enemy.hp -= playerDamege;
   insertText('current-eneny-hp', enemy.hp);
+  console.log(enemy.hp)
+  console.log(enemy.maxHp)
+  console.log(enemy.hp / enemy.maxHp)
   document.getElementById('current-enemy-hpgauge-value').style.width = `${enemy.hp / enemy.maxHp * 100}%`;
   
   if (enemy.hp <= 0) {
-    alert('Win');
     victory = true;
     enemy.hp = 0; 
     insertText('current-eneny-hp', enemy.hp);
     document.getElementById('current-enemy-hpgauge-value').style.width = '0%';
+    showModal(enemy.name + 'を倒しました。');
   }
 
   if (!victory) {
@@ -119,11 +131,11 @@ document.getElementById('attack').addEventListener('click', function() {
     document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
   
     if (player.hp <= 0) {
-      alert('Loose')
       defeat = true;
       player.hpp = 0;
       insertText('current-eneny-hp', enemy.hp);
       document.getElementById('current-player-hpgauge-value').style.width = '0%';
+      showModal(enemy.name + 'に負けました。', true)
     }
   }
 
@@ -132,5 +144,19 @@ document.getElementById('attack').addEventListener('click', function() {
   if (victory) {
     nowKilledNumber++;
     insertText('now-killed-number', nowKilledNumber);
+    if (nowKilledNumber === targetKillsNumber) {
+      showModal('ゲーム・クリア', true)
+    }
   }
 });
+
+document.getElementById('modal-next-btn').addEventListener('click', () => {
+  enemy.hp = enemy.maxHp;
+  enemy = enemies[Math.floor(Math.random() * enemies.length)];
+  insertText('enemy-name', enemy.name);
+  insertText('current-eneny-hp', enemy.hp);
+  insertText('max-enemy-hp', enemy.hp);
+  document.getElementById('current-enemy-hpgauge-value').style.width = '100%';
+  document.getElementById('attack').classList.remove('de-active')
+  document.getElementById('mask').classList.remove('active');
+})

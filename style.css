@@ -8,6 +8,46 @@
   font-family: "Noto Sans JP", sans-serif, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Hiragino Sans", "メイリオ", "Meiryo", sans-serif;
   line-height: 1;
 }
+:root body .mask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+:root body .mask.active {
+  visibility: visible;
+  opacity: 1;
+}
+:root body .mask .modal {
+  width: min(40%, 1000px);
+  padding: 30px 0;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+}
+:root body .mask .modal .modal-title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 900;
+}
+:root body .mask .modal .modal-next-btn {
+  padding: 10px 20px;
+  font-weight: 900;
+  color: #fff;
+  background-color: green;
+  border-radius: 5px;
+}
+:root body .mask .modal .modal-next-btn.hidden {
+  display: none;
+}
 :root body main {
   width: min(100%, 700px);
   margin: 50px auto;
@@ -73,17 +113,19 @@
   content: "";
   margin: 0;
 }
-:root body main section > button {
+:root body main section > .attack {
   display: grid;
   place-content: center;
   width: 50%;
   height: 50px;
   margin: 20px auto 0;
   font-size: 1.1rem;
+  font-weight: 900;
   border-radius: 10px;
-  background-color: #eee;
+  color: #fff;
+  background-color: #F87700;
 }
-:root body main section > button.de-active {
+:root body main section > .attack.de-active {
   pointer-events: none;
   opacity: 0.5;
 }/*# sourceMappingURL=style.css.map */
