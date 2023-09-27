@@ -80,12 +80,12 @@
   border: unset;
   transition: 0.3s;
 }
-:root body main section > ul {
+:root body main section ul {
   display: flex;
   justify-content: center;
   margin-top: 15px;
 }
-:root body main section > ul li:first-of-type::after {
+:root body main section ul .current-player-hp:first-of-type::after, :root body main section ul .current-eneny-hp:first-of-type::after {
   content: "／";
   margin: 0 5px;
 }
@@ -106,14 +106,15 @@
   font-size: 16px;
   line-height: 1.8;
   border: 1px solid #eee;
-  box-shadow: 0 0 20px #eee inset;
+  box-shadow: 0 0 10px 2px #eee inset;
+  border-radius: 10px;
   overflow: auto;
 }
 :root body main section ul.logs li:first-of-type::after {
   content: "";
   margin: 0;
 }
-:root body main section > .attack {
+:root body main section .attack {
   display: grid;
   place-content: center;
   width: 50%;
@@ -125,7 +126,23 @@
   color: #fff;
   background-color: #F87700;
 }
-:root body main section > .attack.de-active {
+:root body main section .attack.de-active {
   pointer-events: none;
   opacity: 0.5;
+}
+:root body main section .subtotal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 500px);
+  margin: 30px auto 20px;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 2px #eee inset;
+  border-radius: 10px;
+}
+:root body main section .subtotal li {
+  font-size: 13px;
+  line-height: 1.2;
 }/*# sourceMappingURL=style.css.map */

@@ -19,7 +19,6 @@ const insertLog = (texts) => {
 };
 
 const showModal = (texts, hiddenNextButton = false) => {
-  console.log(hiddenNextButton);
   document.getElementById('mask').classList.add('active');
   document.getElementById('modal-title').textContent = texts;
   if (hiddenNextButton) {
@@ -28,26 +27,29 @@ const showModal = (texts, hiddenNextButton = false) => {
 };
 
 let nowKilledNumber = 0,
-    targetKillsNumber = 2;
+    targetKillsNumber = 5;
 
 const enemies = [
   {
     name: 'slime',
     hp: 20,
     attack: 3,
-    defense: 1
+    defense: 1,
+    prize: 10
   },
   {
     name: 'fairy',
     hp: 30,
     attack: 4,
-    defense: 2
+    defense: 2,
+    prize: 20
   },
   {
     name: 'gargoyle',
     hp: 100,
     attack: 5,
-    defense: 2
+    defense: 2,
+    prize: 50
   },
 ]
 
@@ -106,9 +108,11 @@ document.getElementById('attack').addEventListener('click', function() {
   }
   enemy.hp -= playerDamege;
   insertText('current-eneny-hp', enemy.hp);
-  console.log(enemy.hp)
-  console.log(enemy.maxHp)
-  console.log(enemy.hp / enemy.maxHp)
+
+  // console.log(enemy.hp);
+  // console.log(enemy.maxHp);
+  // console.log(enemy.hp / enemy.maxHp);
+
   document.getElementById('current-enemy-hpgauge-value').style.width = `${enemy.hp / enemy.maxHp * 100}%`;
   
   if (enemy.hp <= 0) {
@@ -117,6 +121,9 @@ document.getElementById('attack').addEventListener('click', function() {
     insertText('current-eneny-hp', enemy.hp);
     document.getElementById('current-enemy-hpgauge-value').style.width = '0%';
     showModal(enemy.name + 'を倒しました。');
+    document.getElementById('subtotal')
+      .insertAdjacentHTML('beforeend', 
+      `<li>${enemy.name}: ${enemy.prize}点<li>`);
   }
 
   if (!victory) {
@@ -129,6 +136,10 @@ document.getElementById('attack').addEventListener('click', function() {
     player.hp -= enemyDamege;
     insertText('current-player-hp', player.hp);
     document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
+
+    // console.log(player.hp);
+    // console.log(player.maxHp);
+    // console.log(player.hp / player.maxHp);
   
     if (player.hp <= 0) {
       defeat = true;
@@ -148,6 +159,22 @@ document.getElementById('attack').addEventListener('click', function() {
       showModal('ゲーム・クリア', true)
     }
   }
+
+  if ((enemy.hp / enemy.maxHp) * 100 > 50) {
+    document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'blue';
+  } else if ((enemy.hp / enemy.maxHp) * 100 > 20){
+    document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'orange';
+  } else {
+    document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'red';
+  }
+
+  if ((player.hp / player.maxHp) * 100 > 50) {
+    document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'blue';
+  } else if ((player.hp / player.maxHp) * 100 > 20){
+    document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'orange';
+  } else {
+    document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'red';
+  }
 });
 
 document.getElementById('modal-next-btn').addEventListener('click', () => {
@@ -159,4 +186,5 @@ document.getElementById('modal-next-btn').addEventListener('click', () => {
   document.getElementById('current-enemy-hpgauge-value').style.width = '100%';
   document.getElementById('attack').classList.remove('de-active')
   document.getElementById('mask').classList.remove('active');
+  document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'blue';
 })
