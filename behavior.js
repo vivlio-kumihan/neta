@@ -27,7 +27,7 @@ const showModal = (texts, hiddenNextButton = false) => {
 };
 
 let nowKilledNumber = 0,
-    targetKillsNumber = 5;
+    targetKillsNumber = 20;
 
 const enemies = [
   {
@@ -35,21 +35,24 @@ const enemies = [
     hp: 20,
     attack: 3,
     defense: 1,
-    prize: 10
+    prize: 10,
+    experience: 2
   },
   {
     name: 'fairy',
     hp: 30,
     attack: 4,
     defense: 2,
-    prize: 20
+    prize: 20,
+    experience: 3
   },
   {
     name: 'gargoyle',
     hp: 100,
     attack: 5,
     defense: 2,
-    prize: 50
+    prize: 50,
+    experience: 10
   },
 ]
 
@@ -60,7 +63,9 @@ const player = {
   name: 'player',
   hp: 100,
   attack: 5,
-  defense: 2
+  defense: 2,
+  experience: 0,
+  level: 0
 };
 player.maxHp = player.hp;
 
@@ -109,10 +114,6 @@ document.getElementById('attack').addEventListener('click', function() {
   enemy.hp -= playerDamege;
   insertText('current-eneny-hp', enemy.hp);
 
-  // console.log(enemy.hp);
-  // console.log(enemy.maxHp);
-  // console.log(enemy.hp / enemy.maxHp);
-
   document.getElementById('current-enemy-hpgauge-value').style.width = `${enemy.hp / enemy.maxHp * 100}%`;
   
   if (enemy.hp <= 0) {
@@ -124,6 +125,29 @@ document.getElementById('attack').addEventListener('click', function() {
     document.getElementById('subtotal')
       .insertAdjacentHTML('beforeend', 
       `<li>${enemy.name}: ${enemy.prize}点<li>`);
+    const recentExp = player.experience;
+    if (enemy.name === 'slime') {
+      enemy.prize += 10;
+      player.experience += enemy.experience
+      if (recentExp < player.experience) {
+        player.level = Math.floor(player.experience / 20);
+        player.attack += 2;
+        player.defense +=2 ;
+        player.hp += 2;
+      }
+    } else if (enemy.name === 'fairy') {
+      enemy.prize += 20;
+      player.experience += enemy.experience
+      if (recentExp < player.experience) {
+        player.level = Math.floor(player.experience / 20);
+      }
+    } else {
+      enemy.prize += 40;
+      player.experience += enemy.experience
+      if (recentExp < player.experience) {
+        player.level = Math.floor(player.experience / 20);
+      }
+    }
   }
 
   if (!victory) {
@@ -136,10 +160,6 @@ document.getElementById('attack').addEventListener('click', function() {
     player.hp -= enemyDamege;
     insertText('current-player-hp', player.hp);
     document.getElementById('current-player-hpgauge-value').style.width = `${player.hp / player.maxHp * 100}%`;
-
-    // console.log(player.hp);
-    // console.log(player.maxHp);
-    // console.log(player.hp / player.maxHp);
   
     if (player.hp <= 0) {
       defeat = true;
@@ -160,17 +180,17 @@ document.getElementById('attack').addEventListener('click', function() {
     }
   }
 
-  if ((enemy.hp / enemy.maxHp) * 100 > 50) {
+  if ((enemy.hp / enemy.maxHp) * 100 >= 50) {
     document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'blue';
-  } else if ((enemy.hp / enemy.maxHp) * 100 > 20){
+  } else if ((enemy.hp / enemy.maxHp) * 100 >= 20){
     document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'orange';
   } else {
     document.getElementById('current-enemy-hpgauge-value').style.backgroundColor = 'red';
   }
 
-  if ((player.hp / player.maxHp) * 100 > 50) {
+  if ((player.hp / player.maxHp) * 100 >= 50) {
     document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'blue';
-  } else if ((player.hp / player.maxHp) * 100 > 20){
+  } else if ((player.hp / player.maxHp) * 100 >= 20){
     document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'orange';
   } else {
     document.getElementById('current-player-hpgauge-value').style.backgroundColor = 'red';
