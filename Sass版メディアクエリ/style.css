@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 5%;
+  font-size: 1.25rem;
+  line-height: 1em;
+  font-weight: 900;
+  color: #333;
+  background-color: #ccc;
+}
+header .box {
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: inherit;
+}
+@media (width >= 992px) {
+  header .box {
+    background-color: black;
+  }
+}
+@media (width >= 375px) {
+  header {
+    background-color: yellow;
+  }
+}
+@media (width >= 768px) {
+  header {
+    color: #fff;
+    background-color: blue;
+  }
+}
+@media (width >= 992px) {
+  header {
+    background-color: green;
+  }
+}
+@media (width >= 1200px) {
+  header {
+    background-color: red;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.container p {
+  margin-top: 60px;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
