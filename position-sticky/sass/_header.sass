@@ -1,0 +1,173 @@
+@use 'forwards' as fw
+
+header
+  &.media-query-sm
+    .toggle-btn
+      position: absolute
+      top: 20px
+      right: 20px
+      width: 30px
+      aspect-ratio: 1
+      border-radius: 50%
+      background-color: #999
+      cursor: pointer
+      z-index: 101
+      span
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: 20px
+        height: 2px
+        background-color: #fff
+        &:first-of-type
+            top: 30%
+        &:last-of-type
+          top: 70%
+    .toggle-btn.flag span
+      &:first-of-type
+        top: 45%
+        left: 15%
+        transform: rotate(45deg)
+      &:nth-of-type(2)
+        visibility: hidden
+        opacity: 0
+      &:last-of-type
+        top: 45%
+        transform: rotate(-45deg)
+        left: 15%      
+    .container
+      position: fixed
+      top: 0
+      right: -100%  
+      width: 80vw
+      padding: 80px 0
+      background-color: rgba(238, 238, 238, 0.8)
+      transition: .5s
+      visibility: hidden
+      opacity: 0
+      z-index: 100
+      &.active
+        right: 0
+        visibility: visible
+        opacity: 1
+      .wrapper
+        font-size: 1.1rem
+        font-weight: 500
+        a
+          display: flex
+          justify-content: center
+          align-items: center
+          gap: 10px
+          .box
+            width: 30px
+            aspect-ratio: 1
+            background-color: #999
+      .global-menu
+        display: flex
+        flex-direction: column
+        margin-top: 40px
+        padding: 0 10%
+        li
+          button
+            display: block
+            width: 100%
+            margin: 20px 0 15px
+            padding-bottom: 5px
+            border-bottom: 1px solid fw.$black-middle
+        li + li
+          padding-top: 10px
+
+header
+  +fw.min(sm)
+    &.media-query-sm
+  +fw.min(md)
+    &.media-query-sm
+      .container
+        width: 50vw
+        .global-menu
+          padding: 0 15%
+  +fw.min(lg)
+    &.media-query-lg
+      display: flex
+      justify-content: space-between
+      align-items: center
+      gap: 20px
+      right: unset
+      left: 0
+      width: 100%
+      padding: 20px 5%
+      font-size: 1.25rem
+      line-height: 1em
+      font-weight: 900
+      color: #222
+      background-color: brown
+      .toggle-btn
+        display: none
+      .container
+        display: flex
+        justify-content: space-between
+        align-items: center
+        position: unset
+        width: 100%
+        padding: 0
+        color: #fff
+        background-color: unset
+        visibility: visible
+        opacity: 1
+        .wrapper
+          display: flex
+          align-items: center
+          gap: 20px
+          .box
+            width: 50px
+            aspect-ratio: 1
+            background-color: inherit
+            +fw.min(lg)
+              background-color: black
+        .global-menu
+          flex-direction: row
+          align-items: flex-end
+          gap: 30px
+          margin: 0
+          padding: 0
+          .box
+            width: 30px
+            aspect-ratio: 1
+            background-color: #fff
+          li
+            position: relative
+            font-size: 1rem
+            font-weight: 300
+            &:not(:first-of-type)
+              padding-top: 0
+            button
+              margin: 0
+            ul
+              display: flex
+              flex-direction: column
+              position: absolute
+              top: 25px
+              right: 0
+              background-color: rgba(225, 225, 225, 0.9)
+              transition: .5s
+              visibility: hidden
+              opacity: 0
+              &.active
+                visibility: visible
+                opacity: 1
+              li
+                width: 100%
+                padding: 0 2rem
+                color: #333
+                transition: .3s
+                &:hover
+                  opacity: .4
+                &:not(:first-of-type)
+                  border-top: 1px solid fw.$black-middle
+                a
+                  display: block
+                  padding: 1rem 2rem
+                  width: 100%
+  +fw.min(xl)
+    &.media-query-lg

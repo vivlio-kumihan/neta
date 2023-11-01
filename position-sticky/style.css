@@ -1,0 +1,79 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap");
+:root {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+:root body {
+  width: 100%;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Hiragino Sans", "メイリオ", "Meiryo", sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  font-feature-settings: "palt";
+  border: none;
+  color: #555;
+}
+
+body .container {
+  width: min(100%, 60rem);
+  margin: 3rem auto;
+  padding: 3rem 0;
+  background-color: ghostwhite;
+}
+body .container h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+body .container section {
+  display: flex;
+  flex-direction: column;
+}
+body .container section figure {
+  display: grid;
+  place-content: center;
+  position: sticky;
+  top: 0rem;
+  width: 100%;
+  height: 5rem;
+  margin: 0;
+  margin-top: 60px;
+  background-color: #DAF7A6;
+  z-index: 10;
+}
+body .container section ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 5rem;
+  width: 130px;
+  z-index: 100;
+}
+body .container section ul li {
+  width: 100%;
+  padding: 20px 0 20px 30px;
+  line-height: 1;
+  background-color: rgba(95, 185, 95, 0.6);
+}
+body .container section article {
+  padding: 2rem 5rem;
+}
+body .container section article p {
+  font-family: Georgia;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+body .container section article p:not(:last-of-type) {
+  min-height: 90vh;
+}
+body .container p {
+  padding: 0 5rem;
+  font-family: lato;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+body .container p:not(:last-of-type) {
+  min-height: 30vh;
+}/*# sourceMappingURL=style.css.map */

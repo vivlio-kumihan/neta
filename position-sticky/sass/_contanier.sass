@@ -1,0 +1,62 @@
+@use 'forwards' as fw
+
+
+body
+  .container
+    width: min(100%, 60rem)
+    margin: 3rem auto
+    padding: 3rem 0
+    background-color: ghostwhite
+    h1 
+      font-size: 2rem
+      text-align: center
+    section 
+      display: flex
+      flex-direction: column
+      figure 
+        display: grid
+        place-content: center
+        // 親要素のtop位置で止まる。
+        // 簡単すぎて反対に怖い。
+        position: sticky
+        top: 0rem
+        width: 100%
+        height: 5rem
+        margin: 0
+        margin-top: 60px
+        background-color: #DAF7A6
+        z-index: 10
+      ul
+        display: flex
+        flex-direction: column
+        align-items: center
+        position: sticky
+        top: 5rem
+        width: 130px
+        z-index: 100
+        li
+          width: 100%
+          padding: 20px 0 20px 30px 
+          line-height: 1
+          background-color: rgba(95, 185, 95, .6)
+
+      article 
+        padding: 2rem 5rem
+        p 
+          font-family: Georgia
+          font-size: 1.1rem
+          line-height: 1.8
+          &:not(:last-of-type) 
+            min-height: 90vh 
+    p
+      padding: 0 5rem
+      font-family: lato
+      font-size: .9rem
+      line-height: 2
+      &:not(:last-of-type)
+        min-height: 30vh
+
+    +fw.min(sm)
+    +fw.min(md)
+    +fw.min(lg)
+    +fw.min(xl)

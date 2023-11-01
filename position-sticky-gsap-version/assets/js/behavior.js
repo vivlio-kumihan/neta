@@ -11,5 +11,3 @@ ScrollTrigger.create({
   pin: true,
   markers: true,
 })
-
-
