@@ -74,14 +74,16 @@ header.media-query-sm .container.active {
   opacity: 1;
 }
 header.media-query-sm .container .wrapper {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+header.media-query-sm .container .wrapper a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-size: 1.1rem;
-  font-weight: 500;
 }
-header.media-query-sm .container .wrapper .box {
+header.media-query-sm .container .wrapper a .box {
   width: 30px;
   aspect-ratio: 1;
   background-color: #999;

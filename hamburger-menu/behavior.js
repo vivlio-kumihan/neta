@@ -22,3 +22,9 @@ hoverLinks.forEach(elem => {
     childUl[1].classList.remove("active");
   });
 });
+
+// // アンカーにtarget="blank"を付与したい場合。
+// const anchor = document.querySelectorAll("#global-menu > li > ul > li > a");
+// anchor.forEach(a => {
+//   a.setAttribute("target", "_blank");
+// });
