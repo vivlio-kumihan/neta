@@ -1,0 +1,22 @@
+@charset 'utf-8'
+
+
+@use 'forwards' as fw
+// WEBフォントのインポート
+// Noto Sans JP
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;900&display=swap')
+// Noto Serif JP
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap')
+
+// general style
+:root
+  font-size: 100% // => 16px
+  scroll-behavior: smooth
+  body
+    width: 100%
+    margin: 0 auto
+    font-family: Helvetica, Arial, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Hiragino Sans", "メイリオ", "Meiryo", sans-serif
+    line-height: 1
+    font-feature-settings: "palt"
+    border: none
+    color: fw.$black

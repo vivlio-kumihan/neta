@@ -1,0 +1,26 @@
+@use "forwards" as fw
+
+// WEBフォントのインポート
+/* Noto+Sans+JP gothic */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap")
+/* font-family: "Noto Sans JP", sans-serif; */
+
+/* Monoton */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap')
+/* font-family: 'Monoton', cursive; */
+
+  
+html
+  // 本文15px
+  font-size: 93.75%
+  scroll-behavior: smooth
+  /*  ページ先頭の要素に付ける。戻る位置を調整してくれる。
+      scroll-margin-top: 80px  */
+
+body
+  font-family: fw.$webBase
+  line-height: 1.7
+  color: #555
+
+:lang(en)  
+  font-family: fw.$monoton

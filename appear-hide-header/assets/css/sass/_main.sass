@@ -1,0 +1,39 @@
+@use "forwards" as fw
+
+section.top 
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 70px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0 30px
+  color: #fff
+  background-color: #aaa
+  transform: translateY(-100%)
+  transition: 0.3s
+  &.pull-down 
+    transform: translateY(0)
+    top: 0
+  .logo 
+    font-size: 24px
+  ul 
+    display: flex
+    gap: 25px
+
+main 
+  width: min(100%, 700px)
+  margin: 120px auto 0
+  section 
+    display: grid
+    place-content: center
+    padding: 200px
+    font-family: fw.$noto-gth
+    font-size: 15px
+    font-weight: 500
+    border-radius: 10px
+    background-color: #eee
+  section + section 
+    margin-top: 50px

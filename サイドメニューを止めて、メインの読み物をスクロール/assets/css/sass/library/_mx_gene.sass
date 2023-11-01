@@ -1,0 +1,62 @@
+@use "../variable" as var
+
+// デフォルトの引数なしで縦横センター
+// $topで縦ON、$leftで横ON
+=positionAbsoluteCTL($top: false, $left: false)
+  position: absolute
+  @if $top
+    top: 50%
+    transform: translateY(-50%)
+  @else if $left
+    left: 50%
+    transform: translateX(-50%)
+  @else 
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+  
+=circle($width: 50vw, $bgColor: #333)
+  width: $width
+  aspect-ratio: 1
+  border-radius: 50%
+  background-color: $bgColor
+
+
+=circleHalfAndHalf($width: 50vw, $upperCol: #333, $lowerCol: #999)
+  width: $width
+  height: $width
+  @content
+  .upper
+    position: absolute
+    top: 0
+    left: 0
+    content: ""
+    width: 100%
+    aspect-ratio: 2/1
+    overflow: hidden
+    &::before
+      position: absolute
+      top: 0
+      left: 0
+      content: ""
+      width: 100%
+      aspect-ratio: 1
+      border-radius: 50%
+      background-color: $upperCol
+  .lower
+    position: absolute
+    bottom: 0
+    left: 0
+    content: ""
+    width: 100%
+    aspect-ratio: 2/1
+    overflow: hidden
+    &::before
+      position: absolute
+      bottom: 0
+      left: 0
+      content: ""
+      width: 100%
+      aspect-ratio: 1
+      border-radius: 50%
+      background-color: $lowerCol

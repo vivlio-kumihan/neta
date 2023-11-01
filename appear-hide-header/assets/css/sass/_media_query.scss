@@ -1,0 +1,39 @@
+// メディアクエリの設定
+  // sm: 375px–767px
+  // md: 768px–991px
+  // lg: 992px–1199px
+  // xl: 1200px–
+
+// 私の設定法
+  // 各領域以上は設定が引き継がれる。
+  // lgで設定した値は、xlに幅を広げても効果は変化しない。
+  // つまり、通常は、lgに書いているつもりでベースで設定を設置する。
+
+$breakpoints: (sm: 375px, md: 768px, lg: 992px, xl: 1200px);
+
+@mixin min($bp) {
+  @media (width >= #{ map-get($breakpoints, $bp)}) {
+    @content;
+  }
+}
+// // 使うことがあるかわからないが保存しておく設定
+// // @mixin max($bp)
+// //   @media (width < #{ map-get($breakpoints, $bp)})
+// //     @content
+
+
+
+// //////////////////////////////////////////////////////////////////
+
+// $breakpoints: (
+//   'sm': 'screen and (max-width: 375px)',
+//   'md': 'screen and (min-width: 768px)',
+//   'lg': 'screen and (min-width: 992px)',
+//   'xl': 'screen and (min-width: 1200px)',
+//   ) !default;
+
+// @mixin min($breakpoint) {
+//   @media #{map-get($breakpoints, $breakpoint)} {
+//     @content;
+//   }
+// }

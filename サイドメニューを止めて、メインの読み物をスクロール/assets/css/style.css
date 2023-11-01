@@ -1,0 +1,117 @@
+@charset "UTF-8";
+/* Noto+Sans+JP gothic */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap");
+/* font-family: "Noto Sans JP", sans-serif; */
+/* Monoton */
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+/* font-family: 'Monoton', cursive; */
+html {
+  font-size: 93.75%;
+  scroll-behavior: smooth;
+  /*  ページ先頭の要素に付ける。戻る位置を調整してくれる。
+  *  scroll-margin-top: 80px  */
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  color: #555;
+}
+
+:lang(en) {
+  font-family: "Monoton", cursive;
+}
+
+.container .panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 300px 20%;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+.container .panel:last-of-type {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+.container .panel p {
+  margin-top: 40px;
+  font-size: 15px;
+  line-height: 2;
+  text-align: justify;
+}
+.container .panel:nth-of-type(1) {
+  background-color: #1c1ca6;
+}
+.container .panel:nth-of-type(2) {
+  background-color: #be2020;
+}
+.container .panel.wrapper.one {
+  display: grid;
+  grid-template-columns: 1.5fr 4fr;
+  align-items: start;
+  gap: 30px;
+}
+.container .panel.wrapper.one ul {
+  text-align: left;
+}
+.container .panel.wrapper.one ul li {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.container .panel.wrapper.one ul li + li {
+  margin-top: 60px;
+}
+.container .panel.wrapper.one ul li ul li {
+  margin: 0 0 10px;
+  padding-left: 30px;
+  text-transform: none;
+}
+.container .panel.wrapper.one ul li ul li:first-of-type {
+  margin-top: 20px;
+}
+.container .panel.wrapper.one dl.pin {
+  padding-top: 60px;
+  border-top: 1px solid #fff;
+}
+.container .panel.wrapper.one dl dt {
+  margin-bottom: 20px;
+  font-size: 30px;
+  line-height: 1;
+}
+.container .panel.wrapper.one dl dd {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 70vh;
+  padding: 100px 30%;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
+  text-align: left;
+  color: #fff;
+  background-color: #333;
+  z-index: -1;
+}
+footer h2 {
+  margin-bottom: 50px;
+  font-size: 50px;
+  line-height: 1;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
